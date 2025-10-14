@@ -10,23 +10,23 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand font-weight-bold" href="#">👟 YourStore</a>
+        <a class="navbar-brand font-weight-bold" href="{{ url_for('nav.home') }}">👟 YourStore</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{{ url_for('nav.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Shop</a>
+                    <a class="nav-link" href="{{ url_for('nav.shop') }}">Shop</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">New Arrivals</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{{ url_for('nav.contact') }}">Contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav">

@@ -1,11 +1,11 @@
 from flask import Flask
-from blueprints import home
-from blueprints.home import home_bp
+from blueprints import nav
+from blueprints.nav import nav_bp
 
 
 def create_app():
     app = Flask(__name__)
-    app.register_blueprint(home_bp)
+    app.register_blueprint(nav_bp)
     return app
 
 

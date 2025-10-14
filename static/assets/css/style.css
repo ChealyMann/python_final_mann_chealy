@@ -46,3 +46,43 @@ body {
 .sticky-top {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+
+/* Add this to your existing style.css file */
+
+/* About Page - Team Member Styles */
+.team-member img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #dee2e6; /* Light grey border */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-member img:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.team-member h4 {
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+
+/* Add this to your existing style.css file */
+
+/* Shop Page Filter Styles */
+.filter-sidebar .list-group-item {
+    border: none;
+    padding: 0.75rem 0;
+}
+
+.filter-sidebar .list-group-item a {
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.filter-sidebar .list-group-item a:hover {
+    color: #007bff !important; /* Bootstrap primary color */
+}

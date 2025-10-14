@@ -13,3 +13,6 @@ def contact():
 def shop():
     return render_template('frontend/pages/shop.html')
 
+@nav_bp.route('/about')
+def about():
+    return render_template('frontend/pages/about.html')

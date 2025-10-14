@@ -52,5 +52,17 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.thumbnail-image').on('click', function(){
+                var newImageSrc = $(this).attr('src').replace('w=200', 'w=600');
+                $('#mainProductImage').attr('src', newImageSrc);
+                $('.thumbnail-image').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
+    
 </body>
 </html>

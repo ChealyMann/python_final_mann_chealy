@@ -1,0 +1,48 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa; /* Light grey background */
+}
+
+/* Hero Section Styles */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1000') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 0;
+}
+
+/* Product Card Styles */
+.product-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none; /* Remove default border */
+    border-radius: 10px; /* Softer edges */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* Lifts the card on hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Deeper shadow on hover */
+}
+
+.product-card .card-footer {
+    background-color: white;
+    border-top: none; /* Remove border between body and footer */
+}
+
+.product-card .card-title {
+    font-weight: 600;
+    color: #333;
+}
+
+.product-card .card-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff; /* Primary blue color for price */
+}
+
+/* Sticky Navbar Customization */
+.sticky-top {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

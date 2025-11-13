@@ -1,102 +1,83 @@
-{% extends 'frontend/master.html'%}
+{% extends 'frontend/master.html' %}
 
-{% block slide %}
-
-{% endblock %}
+{% block slide %}{% endblock %}
 
 {% block content %}
-	<main class="container my-5">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600" id="mainProductImage" class="img-fluid rounded product-main-image" alt="Main Product Image">
-                <div class="row mt-3 product-thumbnails">
-                    <div class="col-3">
-                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200" class="img-fluid rounded thumbnail-image active" alt="Thumbnail 1">
-                    </div>
-                    <div class="col-3">
-                        <img src="https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=200" class="img-fluid rounded thumbnail-image" alt="Thumbnail 2">
-                    </div>
-                    <div class="col-3">
-                         <img src="https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=200" class="img-fluid rounded thumbnail-image" alt="Thumbnail 3">
-                    </div>
-                    <div class="col-3">
-                        <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=200" class="img-fluid rounded thumbnail-image" alt="Thumbnail 4">
-                    </div>
+<main class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- main product image -->
+            <img src="{{ product.image }}" id="mainProductImage"
+                 class="img-fluid rounded product-main-image" alt="{{ product[title] }}">
+
+            <!-- thumbnails -->
+            <div class="row mt-3 product-thumbnails">
+                {% for thumb in product.thumbs %}
+                <div class="col-3">
+                    <img src="{{ thumb }}"
+                         class="img-fluid rounded thumbnail-image {% if loop.first %}active{% endif %}"
+                         data-src="{{ thumb }}"
+                         alt="Thumbnail {{ loop.index }}">
                 </div>
-            </div>
-
-            <div class="col-md-6">
-                <h1 class="product-title">Classic Runner</h1>
-                <p class="text-muted">Category: Running Shoes</p>
-                <h2 class="product-price">$89.99</h2>
-                <p class="lead product-description">A stylish and comfortable running shoe designed for both performance and everyday wear. Features a lightweight mesh upper for breathability and a cushioned sole for maximum support.</p>
-
-                <hr>
-
-                <div class="form-group">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" class="form-control quantity-input" id="quantity" value="1" min="1" max="10">
-                </div>
-
-                <a href="#" class="btn btn-primary btn-lg btn-block mt-3">
-                    <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                </a>
-
-                <hr>
-
-                <p><strong>SKU:</strong> SS-45678</p>
-                <p><strong>Tags:</strong> Running, Sport, Modern</p>
+                {% endfor %}
             </div>
         </div>
 
-        <section class="related-products mt-5">
-            <hr class="my-5">
-            <h2 class="text-center mb-4">You Might Also Like</h2>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100 product-card">
-                        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500" class="card-img-top" alt="Related Product">
-                        <div class="card-body">
-                            <h5 class="card-title">Street Casual</h5>
-                            <h6 class="card-price">$75.00</h6>
-                        </div>
-                        <div class="card-footer"><a href="#" class="btn btn-primary btn-block">View Details</a></div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100 product-card">
-                        <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=500" class="card-img-top" alt="Related Product">
-                        <div class="card-body">
-                            <h5 class="card-title">Modern Urban</h5>
-                            <h6 class="card-price">$110.00</h6>
-                        </div>
-                        <div class="card-footer"><a href="#" class="btn btn-primary btn-block">View Details</a></div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100 product-card">
-                        <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=500" class="card-img-top" alt="Related Product">
-                        <div class="card-body">
-                            <h5 class="card-title">High-Top Pro</h5>
-                            <h6 class="card-price">$95.00</h6>
-                        </div>
-                        <div class="card-footer"><a href="#" class="btn btn-primary btn-block">View Details</a></div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100 product-card">
-                        <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500" class="card-img-top" alt="Related Product">
-                        <div class="card-body">
-                            <h5 class="card-title">Feather Lite</h5>
-                            <h6 class="card-price">$99.99</h6>
-                        </div>
-                        <div class="card-footer"><a href="#" class="btn btn-primary btn-block">View Details</a></div>
-                    </div>
-                </div>
+        <div class="col-md-6">
+            <h1 class="product-title">{{ product.title }}</h1>
+            {% if product.category %}
+            <p class="text-muted">Category: {{ product.category }}</p>
+            {% endif %}
+            <h2 class="product-price">${{ "%.2f"|format(product.price) }}</h2>
+            <p class="lead product-description">{{ product.description }}</p>
+
+            <hr>
+
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" class="form-control quantity-input" id="quantity" value="1" min="1" max="10">
             </div>
-        </section>
-    </main>
+
+            <!-- Add to cart — if you are using a form or JS cart, adapt this -->
+            <a href="#" class="btn btn-primary btn-lg btn-block mt-3" id="addToCartBtn">
+                <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+            </a>
+
+            <hr>
+
+        </div>
+    </div>
+
+
+</main>
+
+<!-- small JS for thumbnail click -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const mainImg = document.getElementById('mainProductImage');
+    document.querySelectorAll('.thumbnail-image').forEach(el => {
+        el.addEventListener('click', function () {
+            // swap src
+            const src = this.getAttribute('data-src') || this.src;
+            mainImg.src = src;
+
+            // active class
+            document.querySelectorAll('.thumbnail-image').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // Prevent the Add-to-Cart anchor from navigating if you intend to use JS
+    const addBtn = document.getElementById('addToCartBtn');
+    if (addBtn) {
+        addBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const qty = document.getElementById('quantity').value || 1;
+            // TODO: call your cart API or submit a form
+            alert('Add to cart: {{ product.title }} x ' + qty);
+        });
+    }
+});
+</script>
+
 {% endblock %}
-
-
-

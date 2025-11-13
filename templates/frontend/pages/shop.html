@@ -1,168 +1,91 @@
 {% extends 'frontend/master.html' %}
-{% block slide %}
 
-{% endblock %}
+{% block slide %}{% endblock %}
 
 {% block content %}
-	 <main class="container my-5">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="filter-sidebar p-3 shadow-sm rounded">
-                    <h4 class="mb-4">Filters</h4>
+<style>
+.product-card {
+    transition: all .15s ease;
+    cursor: pointer;
+    border-radius: .75rem;
+    overflow: hidden;
+}
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+.card-price {
+    color: #0d6efd;
+    font-weight: 700;
+}
+</style>
 
-                    <div class="mb-4">
-                        <h5>Category</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href="#" class="text-dark">All Shoes</a>
-                                <span class="badge badge-primary badge-pill">12</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href="#" class="text-dark">Running</a>
-                                <span class="badge badge-primary badge-pill">5</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href="#" class="text-dark">Casual</a>
-                                <span class="badge badge-primary badge-pill">4</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href="#" class="text-dark">Formal</a>
-                                <span class="badge badge-primary badge-pill">3</span>
-                            </li>
-                        </ul>
-                    </div>
+<main class="container my-5">
 
-                    <div class="mb-4">
-                        <h5>Price Range</h5>
-                        <form>
-                            <div class="form-group">
-                                <label for="priceRange">Price: $50 — $150</label>
-                                <input type="range" class="form-control-range" id="priceRange" min="0" max="200" value="150">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-9">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <p class="mb-0">Showing 1-9 of 12 results</p>
-                    <form class="form-inline">
-                        <select class="form-control">
-                            <option selected>Default sorting</option>
-                            <option value="1">Sort by price: low to high</option>
-                            <option value="2">Sort by price: high to low</option>
-                            <option value="3">Sort by popularity</option>
-                        </select>
-                    </form>
-                </div>
+    <div class="row g-4">
+        {% for item in products %}
+         <div class="col-lg-3 col-md-6">
+                        <a href="{{ url_for('products.product_detail', id=item.id) }}" class="text-decoration-none text-dark">
+                            <article class="card h-100 border-0 shadow-sm product-card">
 
-                <div class="row">
-                    <a href="{{ url_for('products.product_detail') }}">
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100 product-card">
+                                <div class="position-relative bg-light p-3 text-center">
+                                    <img src="{{ item.image }}"
+                                         alt="{{ item.title }}"
+                                         style="max-height: 180px; width: auto; object-fit: contain;">
+                                </div>
 
-                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" class="card-img-top" alt="Product">
+                                <div class="card-body d-flex flex-column p-4">
+                                    <h6 class="card-title fs-6 fw-semibold mb-3 text-dark">
+                                        {{ item.title }}
+                                    </h6>
 
-                            <div class="card-body">
-                                <h5 class="card-title">Classic Runner</h5>
-                                <h6 class="card-price">$89.99</h6>
-                            </div>
-                            <div class="card-footer"><a href="#" class="btn btn-primary btn-block">Add to Cart</a></div>
-                        </div>
-                    </div>
-                         </a>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100 product-card">
-                            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">Street Casual</h5>
-                                <h6 class="card-price">$75.00</h6>
-                            </div>
-                            <div class="card-footer"><a href="#" class="btn btn-primary btn-block">Add to Cart</a></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100 product-card">
-                            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">Vintage Skater</h5>
-                                <h6 class="card-price">$65.50</h6>
-                            </div>
-                            <div class="card-footer"><a href="#" class="btn btn-primary btn-block">Add to Cart</a></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100 product-card">
-                            <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=500" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">Modern Urban</h5>
-                                <h6 class="card-price">$110.00</h6>
-                            </div>
-                            <div class="card-footer"><a href="#" class="btn btn-primary btn-block">Add to Cart</a></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100 product-card">
-                            <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">Leather Classic</h5>
-                                <h6 class="card-price">$120.00</h6>
-                            </div>
-                            <div class="card-footer"><a href="#" class="btn btn-primary btn-block">Add to Cart</a></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100 product-card">
-                            <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=500" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">High-Top Pro</h5>
-                                <h6 class="card-price">$95.00</h6>
-                            </div>
-                            <div class="card-footer"><a href="#" class="btn btn-primary btn-block">Add to Cart</a></div>
-                        </div>
-                    </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100 product-card">
-                            <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">Feather Lite</h5>
-                                <h6 class="card-price">$99.99</h6>
-                            </div>
-                            <div class="card-footer"><a href="#" class="btn btn-primary btn-block">Add to Cart</a></div>
-                        </div>
-                    </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100 product-card">
-                            <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=500" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">Ocean Breeze</h5>
-                                <h6 class="card-price">$79.50</h6>
-                            </div>
-                            <div class="card-footer"><a href="#" class="btn btn-primary btn-block">Add to Cart</a></div>
-                        </div>
-                    </div>
-                     <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100 product-card">
-                            <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=500" class="card-img-top" alt="Product">
-                            <div class="card-body">
-                                <h5 class="card-title">Retro Pop</h5>
-                                <h6 class="card-price">$85.00</h6>
-                            </div>
-                            <div class="card-footer"><a href="#" class="btn btn-primary btn-block">Add to Cart</a></div>
-                        </div>
-                    </div>
-                </div>
+                                    <div class="mt-auto">
+                                        <div class="d-flex align-items-center gap-2 mb-3">
+                                            <span class="text-primary fw-bold fs-5">${{ item.price }}</span>
+                                        </div>
 
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center mt-4">
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </main>
+                                        <button class="btn btn-primary w-100 fw-medium py-2 add-to-cart-btn"
+                                                onclick="event.stopPropagation();">
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </article>
+                        </a>
+                    </div>
+        {% endfor %}
+    </div>
+
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Entire card clickable
+    document.querySelectorAll("[data-href]").forEach(card => {
+        card.addEventListener("click", e => {
+            if (e.target.closest("button")) return; // ignore button click
+            window.location.href = card.getAttribute("data-href");
+        });
+    });
+
+    // Add to Cart demo
+    document.querySelectorAll("button[data-product-id]").forEach(btn => {
+        btn.addEventListener("click", e => {
+            e.stopPropagation();
+            const id = btn.dataset.productId;
+            alert("Added to cart: Product " + id);
+        });
+    });
+
+});
+</script>
+
 {% endblock %}

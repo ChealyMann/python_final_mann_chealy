@@ -1,13 +1,22 @@
+from pprint import pprint
+
 import requests
 from flask import Blueprint , render_template , redirect , url_for
 
 from form.contact import ContactForm
+from flask import request
 
 nav_bp = Blueprint('nav', __name__)
 
 @nav_bp.route('/')
 def home():
-    return render_template('frontend/home.html')
+    response = requests.get('https://fakestoreapi.com/products')
+    response = response.json()
+    return render_template('frontend/home.html',response=response)
+
+@nav_bp.route('/cart')
+def cart():
+    return render_template('frontend/pages/cart.html')
 
 @nav_bp.route('/contact', methods=['GET', 'POST'])
 def contact():
@@ -50,7 +59,9 @@ MESSAGE : {message}
 
 @nav_bp.route('/shop')
 def shop():
-    return render_template('frontend/pages/shop.html')
+    response = requests.get('https://fakestoreapi.com/products')
+    response = response.json()
+    return render_template('frontend/pages/shop.html',products=response)
 
 @nav_bp.route('/about')
 def about():
